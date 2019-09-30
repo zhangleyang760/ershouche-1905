@@ -63,7 +63,12 @@
             <artifactId>lombok</artifactId>
             <version>1.16.18</version>
         </dependency>
-
+        <!--七牛上传-->
+        <dependency>
+            <groupId>com.qiniu</groupId>
+            <artifactId>qiniu-java-sdk</artifactId>
+            <version>7.2.11</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
