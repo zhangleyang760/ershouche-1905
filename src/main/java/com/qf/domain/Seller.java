@@ -1,9 +1,12 @@
 package com.qf.domain;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "seller")
+@Data
 public class Seller {
     /**
      *
