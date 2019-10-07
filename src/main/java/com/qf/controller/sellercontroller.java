@@ -34,4 +34,5 @@ public class sellercontroller {
         int sid=seller.getSid();
         sellerService.deleteSeller(sid);
     }
+
 }
