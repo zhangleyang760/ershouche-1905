@@ -1,10 +1,5 @@
 package com.qf.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "seller_car")
 public class SellerCar {
     /**
      *

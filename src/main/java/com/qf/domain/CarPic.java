@@ -1,10 +1,6 @@
 package com.qf.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
 
-@Table(name = "carpic")
-@Entity
 public class CarPic {
     /**
      *
