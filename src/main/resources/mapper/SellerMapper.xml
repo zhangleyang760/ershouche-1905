@@ -196,12 +196,12 @@
       email = #{email,jdbcType=VARCHAR}
     where sid = #{sid,jdbcType=INTEGER}
   </update>
-  <select id="findCustomer" parameterType="com.qf.domain.Seller">
-    select * from seller where ifseller=0
+  <select id="findCustomer" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select  <include refid="Base_Column_List" /> from seller where ifseller=0
   </select>
 
-  <select id="findSeller" parameterType="com.qf.domain.Seller">
-    select * from seller where  ifseller=1
+  <select id="findSeller" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from seller where  ifseller=1
   </select>
 
 </mapper>
