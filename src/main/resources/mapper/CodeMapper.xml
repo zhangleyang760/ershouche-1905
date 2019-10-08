@@ -102,4 +102,8 @@
       code = #{code,jdbcType=VARCHAR}
     where codeid = #{codeid,jdbcType=INTEGER}
   </update>
+<!-- Code findCodeByName(String email);-->
+  <select id="findCodeByName" resultType="com.qf.domain.Code">
+        select * from code where email =#{email}
+    </select>
 </mapper>
