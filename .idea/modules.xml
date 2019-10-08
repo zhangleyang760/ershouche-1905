@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ershouche.iml" filepath="$PROJECT_DIR$/ershouche.iml" />
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/src/main/main.iml" filepath="$PROJECT_DIR$/src/main/main.iml" />
+=======
+>>>>>>> origin/master
     </modules>
   </component>
 </project>

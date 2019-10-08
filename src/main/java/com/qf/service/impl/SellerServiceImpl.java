@@ -3,11 +3,12 @@ package com.qf.service.impl;
 import com.qf.dao.SellerRepository;
 import com.qf.domain.Seller;
 import com.qf.service.SellerService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class SellerServiceImpl implements SellerService {
 
     @Resource
