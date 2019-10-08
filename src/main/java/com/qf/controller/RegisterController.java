@@ -2,7 +2,6 @@ package com.qf.controller;
 
 
 import com.qf.domain.Code;
-import com.qf.domain.Customer;
 import com.qf.domain.Seller;
 import com.qf.service.RegisterService;
 import com.qf.utils.EmailUtils;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class SellerRegisterController {
+public class RegisterController {
     @Autowired
     private EmailUtils emailUtils;
     @Autowired
@@ -28,7 +27,7 @@ public String sendEmail(@RequestBody Code userCode){
                 return "";
             }
     }
-    @RequestMapping("/sellerregister")
+    @RequestMapping("/register")
     public String sellerregister(@RequestBody Seller seller){
         //System.out.println(usersLogin);
         String code = registerService.getCode(seller.getEmail());
@@ -38,15 +37,7 @@ public String sendEmail(@RequestBody Code userCode){
         }
         return null;
     }
-    @RequestMapping("/customerregister")
-    public String customerregister(@RequestBody Customer customer){
-        //System.out.println(usersLogin);
-        String code = registerService.getCode(customer.getEmail());
-        if (code.equals(customer.getCode())){
-            registerService.addCustomerAdmin(customer);
-            return "注册成功";
-        }
-        return null;
-    }
+
+
 }
 
