@@ -33,7 +33,7 @@ public class CarController {
     }
 
     @RequestMapping(value = "/updateCar",method = RequestMethod.POST)
-    public Car updateCar(@RequestBody(required = false) Car car){
+    public Car updateCar(@RequestBody Car car){
         return carService.update(car);
     }
 }

@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class CarServiceImpl implements CarService {
     @Resource
-    CarRepository carRepository;
+   private CarRepository carRepository;
     @Override
     public List<Car> findCarAll() {
         return carRepository.findAll();
