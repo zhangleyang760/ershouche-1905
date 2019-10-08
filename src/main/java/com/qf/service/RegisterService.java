@@ -1,7 +1,6 @@
 package com.qf.service;
 
 import com.qf.domain.Code;
-import com.qf.domain.Customer;
 import com.qf.domain.Seller;
 
 public interface RegisterService {
@@ -11,5 +10,4 @@ public interface RegisterService {
 
     Seller addSellerAdmin(Seller seller);
 
-    Customer addCustomerAdmin(Customer customer);
 }
