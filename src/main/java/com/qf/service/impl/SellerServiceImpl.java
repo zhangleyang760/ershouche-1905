@@ -1,10 +1,15 @@
 package com.qf.service.impl;
 
+import com.qf.dao.CarRepository;
 import com.qf.dao.SellerMapper;
 import com.qf.dao.SellerRepository;
+import com.qf.domain.Car;
 import com.qf.domain.Seller;
 import com.qf.service.SellerService;
+import com.qf.utils.UploadUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -16,6 +21,10 @@ public class SellerServiceImpl implements SellerService {
     SellerRepository sellerRepository;
     @Resource
     SellerMapper sellerMapper;
+    @Autowired
+    private CarRepository carRepository;
+    @Autowired
+    private UploadUtils uploadUtils;
 
     @Override
     public List<Seller> findSeller() {
@@ -44,6 +53,25 @@ public class SellerServiceImpl implements SellerService {
     @Override
     public void deleteSeller(Integer sid) {
         sellerRepository.deleteById(sid);
+    }
+
+    @Override
+    public void upload(String cname, String brand, String ctype, String cyear, String miaoshu, String mileage, double price, String color, MultipartFile pic) {
+        String path="";
+        if(pic!=null&&pic.getOriginalFilename()!=""){
+            path=uploadUtils.upload(pic);
+        }
+        Car car=new Car();
+        car.setCname(cname);
+        car.setBrand(brand);
+        car.setCtype(ctype);
+        car.setColor(color);
+        car.setCyear(cyear);
+        car.setMiaoshu(miaoshu);
+        car.setMileage(mileage);
+        car.setPrice(price);
+        car.setPic(path);
+        carRepository.saveAndFlush(car);
     }
 
 }
