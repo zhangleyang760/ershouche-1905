@@ -4,6 +4,7 @@ import com.qf.domain.Car;
 import com.qf.service.CarService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -31,7 +32,7 @@ public class CarController {
         return  carService.findById(car);
     }
 
-    @RequestMapping("/updateCar")
+    @RequestMapping(value = "/updateCar",method = RequestMethod.POST)
     public Car updateCar(@RequestBody(required = false) Car car){
         return carService.update(car);
     }
