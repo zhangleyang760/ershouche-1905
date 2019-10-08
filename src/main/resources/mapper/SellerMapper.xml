@@ -18,6 +18,8 @@
       <arg column="Idcard" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="sex" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="email" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="ifseller" javaType="java.lang.Integer" jdbcType="VARCHAR" />
+      <arg column="ifpay" javaType="java.lang.Integer" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
