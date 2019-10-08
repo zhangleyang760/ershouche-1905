@@ -1,5 +1,6 @@
 package com.qf.service.impl;
 
+import com.qf.dao.SellerMapper;
 import com.qf.dao.SellerRepository;
 import com.qf.domain.Seller;
 import com.qf.service.SellerService;
@@ -13,10 +14,17 @@ public class SellerServiceImpl implements SellerService {
 
     @Resource
     SellerRepository sellerRepository;
+    @Resource
+    SellerMapper sellerMapper;
 
     @Override
     public List<Seller> findSeller() {
-        return sellerRepository.findAll();
+        return sellerMapper.findSeller();
+    }
+
+    @Override
+    public List<Seller> findCustomer() {
+        return sellerMapper.findCustomer();
     }
 
     @Override

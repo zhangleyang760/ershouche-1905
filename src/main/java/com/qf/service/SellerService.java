@@ -11,6 +11,8 @@ public interface SellerService {
 
     List<Seller> findSeller();
 
+    List<Seller> findCustomer();
+
     Seller findById(Seller seller);
 
     Seller update(Seller seller);

@@ -19,6 +19,11 @@ public class sellercontroller {
         return  sellerService.findSeller();
     }
 
+    @RequestMapping("/findCustomer")
+    public List findcustomer(){
+        return sellerService.findCustomer();
+    }
+
     @RequestMapping("/findBySellerId")
     public Seller findBySeller(@RequestBody Seller seller){
         return sellerService.findById(seller);
