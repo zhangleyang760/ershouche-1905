@@ -52,4 +52,6 @@ public interface CodeMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Code record);
+        //根据邮箱名查询code码
+    Code findCodeByName(String email);
 }
