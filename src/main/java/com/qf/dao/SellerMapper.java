@@ -3,6 +3,8 @@ package com.qf.dao;
 import com.qf.domain.Seller;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface SellerMapper {
     /**
@@ -52,4 +54,11 @@ public interface SellerMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Seller record);
+
+    List<Seller> findCustomer();
+
+    List<Seller> findSeller();
+
+    //根据用户名查询密码
+    Seller  findByName(String username);
 }

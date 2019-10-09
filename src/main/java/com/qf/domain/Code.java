@@ -1,7 +1,9 @@
 package com.qf.domain;
 
-import javax.persistence.*;
+import lombok.Data;
 
+import javax.persistence.*;
+@Data
 @Table(name = "code")
 @Entity
 public class Code {
