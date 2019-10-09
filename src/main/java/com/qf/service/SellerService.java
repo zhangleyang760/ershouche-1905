@@ -22,7 +22,11 @@ public interface SellerService {
     void deleteSeller(Integer sid);
 
 //    void upload(String cname, String brand, String ctype, String cyear, String miaoshu, String mileage, double price, String color, MultipartFile pic);
-void upload(Car car);
+    void upload(Car car);
 
     List<Seller> findBySellerName(String loginName);
+
+    Seller findBySellerNameId(int sid);
+
+
 }

@@ -80,6 +80,15 @@ public class SellerServiceImpl implements SellerService {
     }
 
     @Override
+    public Seller findBySellerNameId(int sid) {
+        Optional<Seller> byId = sellerRepository.findById(sid);
+        if (byId.isPresent()){
+          return   byId.get();
+        }
+        return null;
+    }
+
+    @Override
     public void upload(Car car) {
         carRepository.saveAndFlush(car);
     }

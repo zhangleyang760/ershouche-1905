@@ -17,6 +17,7 @@ public class sellercontroller {
 
     @RequestMapping("/findSeller")
     public List findseller(){
+
         return  sellerService.findSeller();
     }
 
@@ -33,8 +34,30 @@ public class sellercontroller {
     @RequestMapping("/findBySellerName")
     public List findBySellerName() {
         String loginname=(String)SecurityUtils.getSubject().getPrincipal();
+        
+
+        List<Seller> bySellerName = sellerService.findBySellerName(loginname);
+
+        for (Seller s:bySellerName){
+            System.out.println(s);
+        }
         return sellerService.findBySellerName(loginname);
     }
+
+    @RequestMapping("/findBySellerNameId")
+    public Seller updateSeller(@RequestBody Seller seller){
+        String loginname=(String)SecurityUtils.getSubject().getPrincipal();
+
+
+        List<Seller> bySellerName = sellerService.findBySellerName(loginname);
+        System.out.println(bySellerName);
+        for (Seller s:bySellerName){
+            int sid=s.getSid();
+            return  sellerService.findBySellerNameId(sid);
+        }
+        return null;
+    }
+
     @RequestMapping("/updateSeller")
     public Seller update(@RequestBody Seller seller){
         return  sellerService.update(seller);
@@ -58,5 +81,6 @@ public class sellercontroller {
 //        sellerService.upload();
 //    }
 
+    
 
 }

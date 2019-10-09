@@ -26,6 +26,7 @@ public class LoginShiroRealm extends AuthorizingRealm {
         String username=(String) authenticationToken.getPrincipal();
         //System.out.println(username);
         Seller byName = sellerMapper.findByName(username);
+
         //System.out.println(byName);
         SimpleAuthenticationInfo simpleAuthenticationInfo=new SimpleAuthenticationInfo(byName.getUsername(),byName.getPassword(),getName());
         return simpleAuthenticationInfo;
