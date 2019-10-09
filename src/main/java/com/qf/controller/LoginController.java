@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 @RequestMapping("/login")
     public String login(@RequestBody Seller seller){
-    //System.out.println(usersLogin);
+    System.out.println(seller);
     try {
         Subject subject=SecurityUtils.getSubject();
         UsernamePasswordToken token=new UsernamePasswordToken(seller.getUsername(),seller.getPassword());
