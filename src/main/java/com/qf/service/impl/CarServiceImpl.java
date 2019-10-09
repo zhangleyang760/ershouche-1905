@@ -58,9 +58,7 @@ public class CarServiceImpl implements CarService {
         if (file!=null&&file.getOriginalFilename()!=""){
             path=uploadUtils.upload(file);
         }
-        Car car=new Car();
-            car.setPic(path);
-        carRepository.saveAndFlush(car);
+
     }
 
 }
