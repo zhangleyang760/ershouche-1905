@@ -58,4 +58,7 @@ public interface SellerMapper {
     List<Seller> findCustomer();
 
     List<Seller> findSeller();
+
+    //根据用户名查询密码
+    Seller  findByName(String username);
 }

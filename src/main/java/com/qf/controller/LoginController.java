@@ -29,5 +29,12 @@ public class LoginController {
     }
     return null;
 }
+    @RequestMapping("/logout")
+    public String logout() {
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return "退出成功";
+    }
+
 
 }
