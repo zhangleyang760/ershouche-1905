@@ -15,12 +15,15 @@ public class PageUtils {
 
     public Page getListBySearch(int currentPage, int size, String search, JpaSpecificationExecutor jpaSpecificationExecutor){
         PageRequest pages = PageRequest.of(currentPage-1, size);
-        if (search!=null&&search!=""){
+        if (search!=null){
             Specification spec=new Specification() {
                 @Override
                 public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
-                    Path name=root.get("username");
-                    Predicate p=criteriaBuilder.like(name,"%"+search+"%");
+                    Path cname=root.get("cname");
+                    Path brand=root.get("brand");
+                    Path ctype=root.get("ctype");
+                    Path price=root.get("price");
+                    Predicate p=criteriaBuilder.like(cname,"%"+search+"%");
 
                     return p;
                 }

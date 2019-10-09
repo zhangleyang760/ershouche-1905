@@ -183,4 +183,47 @@
       miaoshu = #{miaoshu,jdbcType=VARCHAR}
     where cid = #{cid,jdbcType=INTEGER}
   </update>
+  <select id="findBySearchTag" resultMap="BaseResultMap" parameterType="com.qf.bean.IndexRequest">
+    select * from car
+    <where>
+      <if test="name != null and name!=''">
+        cname like "%"#{name,jdbcType=VARCHAR}"%"
+      </if>
+      <if test="brand != null and brand!=''">
+       and brand = #{brand,jdbcType=VARCHAR}
+      </if>
+      <if test="type != null and type!=''">
+       and ctype = #{type,jdbcType=VARCHAR}
+      </if>
+      <if test="minPrice != null and minPrice!='' and maxPrice!=null and maxPrice!=''">
+      and price &gt;= #{minPrice,jdbcType=DOUBLE} and price &lt;= #{maxPrice,jdbcType=DOUBLE}
+      </if>
+      <if test="color != null and color!=''">
+       and color = #{color,jdbcType=VARCHAR}
+      </if>
+    </where>
+    limit #{currentIndex} , #{size}
+  </select>
+
+  <select id="findTotal" resultType="java.lang.Integer" parameterType="com.qf.bean.IndexRequest">
+    select count(1) from car
+    <where>
+      <if test="name != null and name!=''">
+        cname like "%"#{name,jdbcType=VARCHAR}"%"
+      </if>
+      <if test="brand != null and brand!=''">
+        and brand = #{brand,jdbcType=VARCHAR}
+      </if>
+      <if test="type != null and type!=''">
+        and ctype = #{type,jdbcType=VARCHAR}
+      </if>
+      <if test="minPrice != null and minPrice!='' and maxPrice!=null and maxPrice!=''">
+        and price &gt;= #{minPrice,jdbcType=DOUBLE} and price &lt;= #{maxPrice,jdbcType=DOUBLE}
+      </if>
+      <if test="color != null and color!=''">
+        and color = #{color,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+
 </mapper>
