@@ -55,23 +55,32 @@ public class SellerServiceImpl implements SellerService {
         sellerRepository.deleteById(sid);
     }
 
+//    @Override
+//    public void upload(String cname, String brand, String ctype, String cyear, String miaoshu, String mileage, double price, String color, MultipartFile pic) {
+//        String path="";
+//        if(pic!=null&&pic.getOriginalFilename()!=""){
+//            path=uploadUtils.upload(pic);
+//        }
+//        Car car=new Car();
+//        car.setCname(cname);
+//        car.setBrand(brand);
+//        car.setCtype(ctype);
+//        car.setColor(color);
+//        car.setCyear(cyear);
+//        car.setMiaoshu(miaoshu);
+//        car.setMileage(mileage);
+//        car.setPrice(price);
+//        car.setPic(path);
+//        carRepository.saveAndFlush(car);
+//    }
+
     @Override
-    public void upload(String cname, String brand, String ctype, String cyear, String miaoshu, String mileage, double price, String color, MultipartFile pic) {
-        String path="";
-        if(pic!=null&&pic.getOriginalFilename()!=""){
-            path=uploadUtils.upload(pic);
-        }
-        Car car=new Car();
-        car.setCname(cname);
-        car.setBrand(brand);
-        car.setCtype(ctype);
-        car.setColor(color);
-        car.setCyear(cyear);
-        car.setMiaoshu(miaoshu);
-        car.setMileage(mileage);
-        car.setPrice(price);
-        car.setPic(path);
-        carRepository.saveAndFlush(car);
+    public List<Seller> findBySellerName(String loginName) {
+        return sellerRepository.findByUsername(loginName);
     }
 
+    @Override
+    public void upload(Car car) {
+        carRepository.saveAndFlush(car);
+    }
 }
