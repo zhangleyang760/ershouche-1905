@@ -19,12 +19,12 @@ private RegisterService registerService;
     @RequestMapping("/sendEmail")
 public String sendEmail(@RequestBody Code userCode){
 
-        //System.out.println(userCode);
+        System.out.println(userCode);
         String s = emailUtils.sendEmail(userCode.getEmail());
             if (s!=null&&s!=""){
                 return "发送成功";
             }else {
-                return "";
+                return "发送失败";
             }
     }
     @RequestMapping("/register")
