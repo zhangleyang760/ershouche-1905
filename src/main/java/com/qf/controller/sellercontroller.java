@@ -16,7 +16,7 @@ public class sellercontroller {
     @Resource
     SellerService sellerService;
 
-    @RequestMapping("/findseller")
+    @RequestMapping("/findSeller")
     public List findseller(){
         return  sellerService.findSeller();
     }
