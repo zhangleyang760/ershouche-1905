@@ -225,5 +225,7 @@
       </if>
     </where>
   </select>
-
+  <select id="findCid" resultType="java.lang.Integer" >
+    select cid from car where cname=#{cname} and mileage=#{mileage}
+  </select>
 </mapper>

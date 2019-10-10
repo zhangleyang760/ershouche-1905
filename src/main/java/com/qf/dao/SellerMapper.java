@@ -2,6 +2,7 @@ package com.qf.dao;
 
 import com.qf.domain.Seller;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -61,4 +62,6 @@ public interface SellerMapper {
 
     //根据用户名查询密码
     Seller  findByName(String username);
+
+    int findByUsername(@Param("username") String username);
 }
