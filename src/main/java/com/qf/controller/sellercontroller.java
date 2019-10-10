@@ -3,7 +3,10 @@ package com.qf.controller;
 import com.qf.domain.Car;
 import com.qf.domain.Seller;
 import com.qf.service.SellerService;
+import com.qf.utils.UploadUtils;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,7 +17,9 @@ import java.util.List;
 public class sellercontroller {
     @Resource
     SellerService sellerService;
-
+    @Autowired
+    private UploadUtils uploadUtils;
+    @RequiresPermissions(value = {"select"})
     @RequestMapping("/findSeller")
     public List findseller(){
 
@@ -25,39 +30,27 @@ public class sellercontroller {
     public List findcustomer(){
         return sellerService.findCustomer();
     }
-
+    @RequiresPermissions(value = {"select"})
     @RequestMapping("/findBySellerId")
     public Seller findBySeller(@RequestBody Seller seller){
+        System.out.println(sellerService.findById(seller));
         return sellerService.findById(seller);
     }
 
     @RequestMapping("/findBySellerName")
-    public List findBySellerName() {
+    public Seller findBySellerName() {
         String loginname=(String)SecurityUtils.getSubject().getPrincipal();
-        
-
-        List<Seller> bySellerName = sellerService.findBySellerName(loginname);
-
-        for (Seller s:bySellerName){
-            System.out.println(s);
-        }
-        return sellerService.findBySellerName(loginname);
+        Seller bySellerName = sellerService.findBySellerName(loginname);
+       System.out.println(bySellerName);
+        return bySellerName;
     }
 
     @RequestMapping("/findBySellerNameId")
     public Seller updateSeller(@RequestBody Seller seller){
-        String loginname=(String)SecurityUtils.getSubject().getPrincipal();
 
-
-        List<Seller> bySellerName = sellerService.findBySellerName(loginname);
-        System.out.println(bySellerName);
-        for (Seller s:bySellerName){
-            int sid=s.getSid();
-            return  sellerService.findBySellerNameId(sid);
-        }
         return null;
     }
-
+    @RequiresPermissions(value = {"edit"})
     @RequestMapping("/updateSeller")
     public Seller update(@RequestBody Seller seller){
         return  sellerService.update(seller);
@@ -74,12 +67,13 @@ public class sellercontroller {
 ////    }
     @RequestMapping(value = "/upload",method = RequestMethod.POST)
     public void upload(@RequestBody Car car){
-        sellerService.upload(car);
+        String loginname=(String)SecurityUtils.getSubject().getPrincipal();
+        sellerService.upload(car,loginname);
     }
-//    @RequestMapping("/uploadPic")
-//    public void uploadPic(@RequestParam("pic")MultipartFile file,@RequestParam("cname")String cname,@RequestParam("brand")String brand){
-//        sellerService.upload();
-//    }
+    @RequestMapping(value = "/uploadPic",method = RequestMethod.POST)
+    public String upload(MultipartFile file){
+        return uploadUtils.upload(file);
+    }
 
     
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.PermissionMapper">
+
+
+    <!--List<Permission> selectPermissionByUsername(@Param("username") String username);-->
+
+    <select id="selectPermissionByUsername" resultType="com.qf.domain.Permission">
+        select p.* from seller s,role r,permission p,user_role ur,role_permission rp
+        where s.sid = ur.sid
+        and ur.role_id = r.role_id
+        and r.role_id = rp.role_id
+        and p.permissionid = rp.permissionid
+        and s.username=#{username}
+    </select>
+</mapper>

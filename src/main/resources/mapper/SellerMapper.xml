@@ -207,4 +207,7 @@
   <select id="findByName" resultType="com.qf.domain.Seller">
         select * from seller where username =#{username}
     </select>
+  <select id="findByUsername"  resultType="java.lang.Integer">
+      select sid from seller where username=#{username}
+  </select>
 </mapper>
