@@ -75,12 +75,13 @@ public class SellerServiceImpl implements SellerService {
 //    }
 
     @Override
-    public List<Seller> findBySellerName(String loginName) {
+    public Seller findBySellerName(String loginName) {
+
         return sellerRepository.findByUsername(loginName);
     }
 
     @Override
-    public Seller findBySellerNameId(int sid) {
+    public Seller findBySellerNameId(Integer sid) {
         Optional<Seller> byId = sellerRepository.findById(sid);
         if (byId.isPresent()){
           return   byId.get();
