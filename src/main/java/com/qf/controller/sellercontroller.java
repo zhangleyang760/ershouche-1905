@@ -3,7 +3,9 @@ package com.qf.controller;
 import com.qf.domain.Car;
 import com.qf.domain.Seller;
 import com.qf.service.SellerService;
+import com.qf.utils.UploadUtils;
 import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,6 +16,8 @@ import java.util.List;
 public class sellercontroller {
     @Resource
     SellerService sellerService;
+    @Autowired
+    private UploadUtils uploadUtils;
 
     @RequestMapping("/findSeller")
     public List findseller(){
@@ -64,10 +68,10 @@ public class sellercontroller {
     public void upload(@RequestBody Car car){
         sellerService.upload(car);
     }
-//    @RequestMapping("/uploadPic")
-//    public void uploadPic(@RequestParam("pic")MultipartFile file,@RequestParam("cname")String cname,@RequestParam("brand")String brand){
-//        sellerService.upload();
-//    }
+    @RequestMapping(value = "/uploadPic",method = RequestMethod.POST)
+    public String upload(MultipartFile file){
+        return uploadUtils.upload(file);
+    }
 
     
 

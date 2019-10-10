@@ -14,8 +14,8 @@ public class IndexController {
     private IndexService indexService;
     @RequestMapping("/index")
     public IndexResponse index(@RequestBody IndexRequest indexRequest){
+        indexRequest.setCurrentIndex((indexRequest.getCurrentPage()-1)*indexRequest.getSize());
         IndexResponse bySearch = indexService.findBySearch(indexRequest);
-        System.out.println(bySearch);
         return bySearch;
 
     }

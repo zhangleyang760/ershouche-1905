@@ -1,7 +1,11 @@
 package com.qf.dao;
 
+import com.qf.bean.IndexRequest;
 import com.qf.domain.Car;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface CarMapper {
@@ -52,4 +56,7 @@ public interface CarMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(Car record);
+
+    List<Car> findBySearchTag(IndexRequest indexRequest);
+    Integer findTotal(IndexRequest indexRequest);
 }
