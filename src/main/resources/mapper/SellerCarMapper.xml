@@ -11,6 +11,14 @@
       <arg column="cid" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
+  <select id="findSeller" parameterType="java.lang.Integer" resultType="com.qf.domain.Seller">
+    select s.* from
+    car c,seller_car sc,seller s
+    where
+    c.cid=sc.cid
+    and sc.sid=s.sid
+    and c.cid=#{cid,jdbcType=INTEGER}
+  </select>
   <insert id="insert" parameterType="com.qf.domain.SellerCar">
     <!--
       WARNING - @mbg.generated

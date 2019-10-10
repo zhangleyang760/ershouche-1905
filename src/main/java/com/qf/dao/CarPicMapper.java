@@ -3,6 +3,8 @@ package com.qf.dao;
 import com.qf.domain.CarPic;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface CarPicMapper {
     /**
@@ -20,4 +22,5 @@ public interface CarPicMapper {
      * @mbg.generated
      */
     int insertSelective(CarPic record);
+    List getPics(Integer cid);
 }

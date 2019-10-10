@@ -1,5 +1,6 @@
 package com.qf.dao;
 
+import com.qf.domain.Seller;
 import com.qf.domain.SellerCar;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -20,4 +21,6 @@ public interface SellerCarMapper {
      * @mbg.generated
      */
     int insertSelective(SellerCar record);
+
+    Seller findSeller(Integer cid);
 }
