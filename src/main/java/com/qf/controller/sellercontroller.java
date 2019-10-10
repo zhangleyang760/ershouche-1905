@@ -32,33 +32,21 @@ public class sellercontroller {
 
     @RequestMapping("/findBySellerId")
     public Seller findBySeller(@RequestBody Seller seller){
+        System.out.println(sellerService.findById(seller));
         return sellerService.findById(seller);
     }
 
     @RequestMapping("/findBySellerName")
-    public List findBySellerName() {
+    public Seller findBySellerName() {
         String loginname=(String)SecurityUtils.getSubject().getPrincipal();
-        
-
-        List<Seller> bySellerName = sellerService.findBySellerName(loginname);
-
-        for (Seller s:bySellerName){
-            System.out.println(s);
-        }
-        return sellerService.findBySellerName(loginname);
+        Seller bySellerName = sellerService.findBySellerName(loginname);
+       System.out.println(bySellerName);
+        return bySellerName;
     }
 
     @RequestMapping("/findBySellerNameId")
     public Seller updateSeller(@RequestBody Seller seller){
-        String loginname=(String)SecurityUtils.getSubject().getPrincipal();
 
-
-        List<Seller> bySellerName = sellerService.findBySellerName(loginname);
-        System.out.println(bySellerName);
-        for (Seller s:bySellerName){
-            int sid=s.getSid();
-            return  sellerService.findBySellerNameId(sid);
-        }
         return null;
     }
 
