@@ -42,4 +42,7 @@
       </if>
     </trim>
   </insert>
+  <insert id="insertScid" >
+      insert into seller_car (sid,cid) values (#{sid},#{cid})
+  </insert>
 </mapper>

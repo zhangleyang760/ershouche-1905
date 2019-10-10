@@ -59,4 +59,6 @@ public interface CarMapper {
 
     List<Car> findBySearchTag(IndexRequest indexRequest);
     Integer findTotal(IndexRequest indexRequest);
+
+    int findCid(@Param("cname") String cname,@Param("mileage") String mileage);
 }

@@ -78,7 +78,8 @@ public class sellercontroller {
 ////    }
     @RequestMapping(value = "/upload",method = RequestMethod.POST)
     public void upload(@RequestBody Car car){
-        sellerService.upload(car);
+        String loginname=(String)SecurityUtils.getSubject().getPrincipal();
+        sellerService.upload(car,loginname);
     }
     @RequestMapping(value = "/uploadPic",method = RequestMethod.POST)
     public String upload(MultipartFile file){
