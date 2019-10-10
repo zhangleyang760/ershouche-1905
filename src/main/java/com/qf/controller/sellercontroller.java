@@ -5,6 +5,7 @@ import com.qf.domain.Seller;
 import com.qf.service.SellerService;
 import com.qf.utils.UploadUtils;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,7 +19,7 @@ public class sellercontroller {
     SellerService sellerService;
     @Autowired
     private UploadUtils uploadUtils;
-
+    @RequiresPermissions(value = {"select"})
     @RequestMapping("/findSeller")
     public List findseller(){
 
@@ -29,7 +30,7 @@ public class sellercontroller {
     public List findcustomer(){
         return sellerService.findCustomer();
     }
-
+    @RequiresPermissions(value = {"select"})
     @RequestMapping("/findBySellerId")
     public Seller findBySeller(@RequestBody Seller seller){
         System.out.println(sellerService.findById(seller));
@@ -49,7 +50,7 @@ public class sellercontroller {
 
         return null;
     }
-
+    @RequiresPermissions(value = {"edit"})
     @RequestMapping("/updateSeller")
     public Seller update(@RequestBody Seller seller){
         return  sellerService.update(seller);

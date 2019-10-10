@@ -5,6 +5,7 @@ package com.qf.controller;
 import com.qf.domain.Seller;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class LoginController {
-@RequestMapping("/login")
+
+    @RequestMapping("/login")
     public String login(@RequestBody Seller seller){
     System.out.println(seller);
     try {
@@ -21,7 +23,7 @@ public class LoginController {
         UsernamePasswordToken token=new UsernamePasswordToken(seller.getUsername(),seller.getPassword());
         subject.login(token);
         if (subject.isAuthenticated()){
-            return "登录成功";
+            return seller.getUsername();
         }
     }catch (Exception e){
         e.printStackTrace();
