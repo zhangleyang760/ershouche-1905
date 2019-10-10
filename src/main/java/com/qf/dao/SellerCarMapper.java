@@ -23,4 +23,5 @@ public interface SellerCarMapper {
     int insertSelective(SellerCar record);
 
     Seller findSeller(Integer cid);
+    void insertScid (Integer sid,Integer cid);
 }
