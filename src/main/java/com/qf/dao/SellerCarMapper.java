@@ -3,6 +3,7 @@ package com.qf.dao;
 import com.qf.domain.Seller;
 import com.qf.domain.SellerCar;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface SellerCarMapper {
@@ -23,5 +24,5 @@ public interface SellerCarMapper {
     int insertSelective(SellerCar record);
 
     Seller findSeller(Integer cid);
-    void insertScid (Integer sid,Integer cid);
+    void insertScid (@Param("sid") Integer sid, @Param("cid") Integer cid);
 }

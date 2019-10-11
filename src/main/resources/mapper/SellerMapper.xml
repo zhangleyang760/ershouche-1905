@@ -208,6 +208,6 @@
         select * from seller where username =#{username}
     </select>
   <select id="findByUsername"  resultType="java.lang.Integer">
-      select sid from seller where username=#{username}
+      select seller.sid from seller where username=#{username}
   </select>
 </mapper>
