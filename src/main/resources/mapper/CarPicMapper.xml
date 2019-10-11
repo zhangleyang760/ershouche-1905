@@ -4,4 +4,7 @@
   <select id="getPics" parameterType="java.lang.Integer" resultType="java.lang.String">
     select pic from carpic where cid=#{cid}
   </select>
+  <insert id="insertCpic" >
+    insert into carpic (cid,pic) values (#{cid},#{pic});
+  </insert>
 </mapper>
