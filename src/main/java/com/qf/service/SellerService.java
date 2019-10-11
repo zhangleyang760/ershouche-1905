@@ -1,6 +1,7 @@
 package com.qf.service;
 
 import com.qf.domain.Car;
+import com.qf.domain.CarPic;
 import com.qf.domain.Seller;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,5 +29,6 @@ public interface SellerService {
 
     Seller findBySellerNameId(Integer sid);
 
+    String uploadPic(CarPic carPic);
 
 }

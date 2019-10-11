@@ -1,6 +1,7 @@
 package com.qf.controller;
 
 import com.qf.domain.Car;
+import com.qf.domain.CarPic;
 import com.qf.domain.Seller;
 import com.qf.service.SellerService;
 import com.qf.utils.UploadUtils;
@@ -74,7 +75,14 @@ public class sellercontroller {
     public String upload(MultipartFile file){
         return uploadUtils.upload(file);
     }
-
+    @RequestMapping(value = "/uploadPic1",method = RequestMethod.POST)
+    public String uploadPic1(MultipartFile file){
+        return uploadUtils.upload(file);
+    }
+    @RequestMapping(value = "/uploadCarpic",method = RequestMethod.POST)
+    public String uploadPic2(@RequestBody CarPic carPic){
+        return sellerService.uploadPic(carPic);
+    }
     
 
 }

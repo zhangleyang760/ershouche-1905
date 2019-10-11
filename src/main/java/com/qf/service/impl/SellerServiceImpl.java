@@ -2,6 +2,7 @@ package com.qf.service.impl;
 
 import com.qf.dao.*;
 import com.qf.domain.Car;
+import com.qf.domain.CarPic;
 import com.qf.domain.Seller;
 import com.qf.service.SellerService;
 import com.qf.utils.UploadUtils;
@@ -27,6 +28,11 @@ public class SellerServiceImpl implements SellerService {
     private CarMapper carMapper;
     @Resource
     private SellerCarMapper sellerCarMapper;
+    @Resource
+    private CarPicMapper carPicMapper;
+
+
+    private Integer cid;
 
     @Override
     public List<Seller> findSeller() {
@@ -102,5 +108,11 @@ public class SellerServiceImpl implements SellerService {
         sellerCarMapper.insertScid(sid,cid);
 
 
+    }
+    @Override
+    public String uploadPic(CarPic carPic) {
+        carPicMapper.insertCpic(cid,carPic.getPic());
+
+        return "上传成功";
     }
 }
