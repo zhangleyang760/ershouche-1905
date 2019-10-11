@@ -102,9 +102,10 @@ public class SellerServiceImpl implements SellerService {
     public void upload(Car car,String LoginName) {
         carRepository.saveAndFlush(car);
         Integer sid=sellerMapper.findByUsername(LoginName);
+        System.out.println(sid);
         String cname=car.getCname();
         String mileage=car.getMileage();
-        Integer cid=carMapper.findCid(cname,mileage);
+        cid=carMapper.findCid(cname,mileage);
         sellerCarMapper.insertScid(sid,cid);
 
 

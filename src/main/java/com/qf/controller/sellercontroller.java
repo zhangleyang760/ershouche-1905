@@ -69,6 +69,7 @@ public class sellercontroller {
     @RequestMapping(value = "/upload",method = RequestMethod.POST)
     public void upload(@RequestBody Car car){
         String loginname=(String)SecurityUtils.getSubject().getPrincipal();
+        System.out.println(loginname);
         sellerService.upload(car,loginname);
     }
     @RequestMapping(value = "/uploadPic",method = RequestMethod.POST)

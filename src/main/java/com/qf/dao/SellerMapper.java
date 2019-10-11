@@ -63,5 +63,5 @@ public interface SellerMapper {
     //根据用户名查询密码
     Seller  findByName(String username);
 
-    int findByUsername(@Param("username") String username);
+    Integer findByUsername(@Param("username") String username);
 }
