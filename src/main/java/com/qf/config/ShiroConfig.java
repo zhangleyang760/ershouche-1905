@@ -1,7 +1,7 @@
 package com.qf.config;
 
-
 import com.qf.shiro.LoginShiroRealm;
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -9,32 +9,62 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-
 @Configuration
-public class    ShiroConfig {
-
+public class ShiroConfig {
     @Bean
-    public ShiroFilterFactoryBean shiroFilterFactoryBean(@Qualifier("defaultWebSecurityManager")DefaultWebSecurityManager defaultWebSecurityManager){
+    public ShiroFilterFactoryBean shiroFilterFactroyBean(@Qualifier("defaultWebSecurityManager")DefaultWebSecurityManager defaultWebSecurityManager){
+
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-        shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
+
+        //设置登录页面
         shiroFilterFactoryBean.setLoginUrl("/login");
+        //无权限得情况下跳转得方法
+        shiroFilterFactoryBean.setUnauthorizedUrl("/unauth");
 
+/*        Map filtes = new HashMap<>();
 
+        //设置权限
+        filtes.put("/insert","perms[user_editsjh]");
+        filtes.put("/delete","perms[user_editsss]");
+        filtes.put("/update","perms[user_forbiddens]");
+        shiroFilterFactoryBean.setFilterChainDefinitionMap(filtes);*/
+        shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
         return shiroFilterFactoryBean;
     }
 
 
+
     @Bean("defaultWebSecurityManager")
-    public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("LoginShiroRealm") LoginShiroRealm LoginShiroRealm){
+    public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("loginShiroRealm")LoginShiroRealm loginShiroRealm){
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
-        defaultWebSecurityManager.setRealm(LoginShiroRealm);
+
+        defaultWebSecurityManager.setRealm(loginShiroRealm);
+
         return defaultWebSecurityManager;
     }
 
-    @Bean("LoginShiroRealm")
-    public LoginShiroRealm myShiroRealm(){
+    /**
+     * 密码校验规则HashedCredentialsMatcher
+     * 这个类是为了对密码进行编码的 ,
+     * 防止密码在数据库里明码保存 , 当然在登陆认证的时候 ,
+     * 这个类也负责对form里输入的密码进行编码
+     * 处理认证匹配处理器：如果自定义需要实现继承HashedCredentialsMatcher
+     */
+    @Bean("hashedCredentialsMatcher")
+    public HashedCredentialsMatcher hashedCredentialsMatcher() {
+        HashedCredentialsMatcher credentialsMatcher = new HashedCredentialsMatcher();
+        //指定加密方式为MD5
+        credentialsMatcher.setHashAlgorithmName("MD5");
+        //加密次数
+        credentialsMatcher.setHashIterations(1024);
+        credentialsMatcher.setStoredCredentialsHexEncoded(true);
+        return credentialsMatcher;
+    }
+    @Bean("loginShiroRealm")
+    public LoginShiroRealm loginShiroRealm(@Qualifier("hashedCredentialsMatcher")HashedCredentialsMatcher hashedCredentialsMatcher){
         LoginShiroRealm loginShiroRealm = new LoginShiroRealm();
+       loginShiroRealm.setAuthorizationCachingEnabled(false);
+        loginShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher);
         return loginShiroRealm;
     }
 

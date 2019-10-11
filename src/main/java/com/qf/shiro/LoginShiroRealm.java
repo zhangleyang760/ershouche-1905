@@ -12,6 +12,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 
 
 import javax.annotation.Resource;
@@ -49,7 +50,7 @@ public class LoginShiroRealm extends AuthorizingRealm {
         Seller byName = sellerMapper.findByName(username);
 
         //System.out.println(byName);
-        SimpleAuthenticationInfo simpleAuthenticationInfo=new SimpleAuthenticationInfo(byName.getUsername(),byName.getPassword(),getName());
+        SimpleAuthenticationInfo simpleAuthenticationInfo=new SimpleAuthenticationInfo(byName.getUsername(),byName.getPassword(),ByteSource.Util.bytes(byName.getUsername()),getName());
         return simpleAuthenticationInfo;
     }
 }

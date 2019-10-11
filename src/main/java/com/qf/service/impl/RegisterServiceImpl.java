@@ -26,7 +26,12 @@ public class RegisterServiceImpl implements RegisterService {
     private SellerRepository sellerRepository;
     @Override
     public void addCode(Code userCode) {
-        codeRepository.save(userCode);
+        if (codeMapper.findCodeByName(userCode.getEmail())==null){
+            codeRepository.save(userCode);
+        }
+        Code byName = codeMapper.findCodeByName(userCode.getEmail());
+            userCode.setCodeid(byName.getCodeid());
+            codeRepository.save(userCode);
     }
 
     @Override
