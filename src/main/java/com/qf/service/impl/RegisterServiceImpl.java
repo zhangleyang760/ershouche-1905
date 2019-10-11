@@ -7,6 +7,7 @@ import com.qf.dao.SellerRepository;
 import com.qf.domain.Code;
 import com.qf.domain.Seller;
 import com.qf.service.RegisterService;
+import com.qf.utils.Md5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ import javax.annotation.Resource;
 
 @Service
 public class RegisterServiceImpl implements RegisterService {
+    @Autowired
+    private Md5Utils md5Utils;
     @Autowired
     private CodeRepository codeRepository;
     @Resource
@@ -34,6 +37,8 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Override
     public Seller addSellerAdmin(Seller seller) {
+        String passwordCode = md5Utils.getPasswordCode(seller.getPassword(), seller.getUsername());
+        seller.setPassword(passwordCode);
         return sellerRepository.save(seller);
     }
 
