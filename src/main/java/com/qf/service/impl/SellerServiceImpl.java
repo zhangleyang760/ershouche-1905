@@ -104,7 +104,7 @@ public class SellerServiceImpl implements SellerService {
         Integer sid=sellerMapper.findByUsername(LoginName);
         String cname=car.getCname();
         String mileage=car.getMileage();
-        Integer cid=carMapper.findCid(cname,mileage);
+        cid=carMapper.findCid(cname,mileage);
         sellerCarMapper.insertScid(sid,cid);
 
 
