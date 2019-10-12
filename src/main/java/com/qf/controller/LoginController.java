@@ -25,7 +25,7 @@ public class LoginController {
     }
 
     @RequestMapping("/login")
-    public String login(@RequestBody Seller seller,HttpSession session){
+    public String login(@RequestBody Seller seller){
         String username=seller.getUsername();
         String password=seller.getPassword();
         if(username!=""&&username!=null&&password!=""&&password!=null) {
@@ -35,7 +35,6 @@ public class LoginController {
                 UsernamePasswordToken token = new UsernamePasswordToken(seller.getUsername(), seller.getPassword());
                 subject.login(token);
                 if (subject.isAuthenticated()) {
-                    session.setAttribute("username",username);
                     return seller.getUsername();
                 } else {
                     return null;
@@ -49,12 +48,12 @@ public class LoginController {
 }
     /**
      *
-     * @param session
      * @return获取用户名
      */
     @RequestMapping(value = "/getUserSession",method = RequestMethod.POST)
-    public String getUserSession(HttpSession session){
-        return (String)session.getAttribute("username");
+    public String getUserSession(){
+        String loginname=(String)SecurityUtils.getSubject().getPrincipal();
+        return loginname;
     }
     @RequestMapping("/loginout")
     public String logout() {
