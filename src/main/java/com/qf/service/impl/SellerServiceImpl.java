@@ -99,21 +99,31 @@ public class SellerServiceImpl implements SellerService {
 
 
     @Override
-    public void upload(Car car,String LoginName) {
-        carRepository.saveAndFlush(car);
-        Integer sid=sellerMapper.findByUsername(LoginName);
-        System.out.println(sid);
-        String cname=car.getCname();
-        String mileage=car.getMileage();
-        cid=carMapper.findCid(cname,mileage);
-        sellerCarMapper.insertScid(sid,cid);
+    public String upload(Car car,String LoginName) {
+        if(car.getPic()==null||car.getCname()==null||car.getMileage()==null||car.getBrand()==null||car.getColor()==null||car.getCtype()==null||car.getCyear()==null||car.getMiaoshu()==null||car.getPrice()==null){
+            return null;
+        }
+        else{
+            carRepository.saveAndFlush(car);
+            Integer sid=sellerMapper.findByUsername(LoginName);
+            System.out.println(sid);
+            String cname=car.getCname();
+            String mileage=car.getMileage();
+            cid=carMapper.findCid(cname,mileage);
+            sellerCarMapper.insertScid(sid,cid);
 
-
+            return "上传成功";
+        }
     }
     @Override
     public String uploadPic(CarPic carPic) {
+        if(carPic.getPic()==null){
+            return null;
+        }else{
         carPicMapper.insertCpic(cid,carPic.getPic());
 
         return "上传成功";
+
+        }
     }
 }
