@@ -5,6 +5,7 @@ package com.qf.controller;
 import com.qf.domain.Seller;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,11 @@ import javax.servlet.http.HttpSession;
 
 @RestController
 public class LoginController {
+    @RequiresAuthentication
+    @RequestMapping("/checkLogin")
+    public String userInfo(){
+        return "成功";
+    }
 
     @RequestMapping("/login")
     public String login(@RequestBody Seller seller,HttpSession session){

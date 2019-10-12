@@ -1,6 +1,7 @@
 package com.qf.config;
 
 import org.apache.shiro.authz.AuthorizationException;
+import org.apache.shiro.authz.UnauthenticatedException;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -18,6 +19,11 @@ public class ExceptionController {
         return "unauth";
     }
 
+    @ExceptionHandler(value =UnauthenticatedException.class )
+    public String UnauthenticatedExceptionHandle(Exception e){
+        //System.out.println("未登录！！");
+        return "未登录";
+    }
     @ExceptionHandler(value = AuthorizationException.class)
     public String AuthorizationExceptionHandle(Exception e){
         System.out.println(e.getMessage());
