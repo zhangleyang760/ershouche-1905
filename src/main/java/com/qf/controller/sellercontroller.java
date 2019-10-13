@@ -74,10 +74,17 @@ public class sellercontroller {
     }
     @RequestMapping(value = "/uploadPic",method = RequestMethod.POST)
     public String upload(MultipartFile file){
+        if(file.isEmpty()){
+            return null;
+        }
+
         return uploadUtils.upload(file);
     }
     @RequestMapping(value = "/uploadPic1",method = RequestMethod.POST)
     public String uploadPic1(MultipartFile file){
+        if(file.isEmpty()){
+         return null;
+        }
         return uploadUtils.upload(file);
     }
     @RequestMapping(value = "/uploadCarpic",method = RequestMethod.POST)
