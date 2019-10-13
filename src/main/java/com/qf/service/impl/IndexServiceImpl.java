@@ -26,4 +26,14 @@ public class IndexServiceImpl implements IndexService {
         indexResponse.setCars(bySearchTag);
         return indexResponse;
     }
+
+    @Override
+    public List findByClick(Integer num) {
+        return carMapper.findByClick(num);
+    }
+
+    @Override
+    public void addClick(Integer id) {
+        carMapper.addClick(id);
+    }
 }

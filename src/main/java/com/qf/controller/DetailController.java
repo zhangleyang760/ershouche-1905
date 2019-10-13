@@ -18,13 +18,9 @@ public class DetailController {
     @RequiresAuthentication
     @RequestMapping("/detail")
     public DetailResponse showDetail(@RequestBody Car car){
-        Subject subject = SecurityUtils.getSubject();
-        if (subject==null){
-            System.out.println("未登录！！！！！！");
-            return null;
-        }
+        //System.out.println(car);
         DetailResponse detailResponse = detailService.showDetail(car.getCid());
-        System.out.println(detailResponse);
+        //System.out.println(detailResponse);
         return detailResponse;
     }
 }

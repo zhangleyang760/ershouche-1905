@@ -11,6 +11,7 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer cid;
+    private Long click;
 
     /**
      *
@@ -99,7 +100,7 @@ public class Car {
      *
      * @mbg.generated
      */
-    public Car(Integer cid, String cname, String brand, String ctype, Double price, String mileage, String cyear, String color, String pic, String miaoshu) {
+    public Car(Integer cid, String cname, String brand, String ctype, Double price, String mileage, String cyear, String color, String pic, String miaoshu,Long click) {
         this.cid = cid;
         this.cname = cname;
         this.brand = brand;
@@ -110,6 +111,7 @@ public class Car {
         this.color = color;
         this.pic = pic;
         this.miaoshu = miaoshu;
+        this.click=click;
     }
 
     /**

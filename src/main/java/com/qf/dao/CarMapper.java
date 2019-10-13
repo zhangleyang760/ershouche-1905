@@ -61,4 +61,7 @@ public interface CarMapper {
     Integer findTotal(IndexRequest indexRequest);
 
     int findCid(@Param("cname") String cname,@Param("mileage") String mileage);
+    List findByClick(Integer num);
+
+    void addClick(Integer id);
 }

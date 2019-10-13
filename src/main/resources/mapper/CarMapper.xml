@@ -17,6 +17,7 @@
       <arg column="color" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="pic" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="miaoshu" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="click" javaType="java.lang.Long" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
@@ -228,4 +229,10 @@
   <select id="findCid" resultType="java.lang.Integer" >
     select cid from car where cname=#{cname} and mileage=#{mileage}
   </select>
+  <select id="findByClick" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select * from car order by click desc limit #{num,jdbcType=INTEGER}
+  </select>
+  <update id="addClick" parameterType="java.lang.Integer">
+    update car set click=click+1 where cid=#{id,jdbcType=INTEGER}
+  </update>
 </mapper>
